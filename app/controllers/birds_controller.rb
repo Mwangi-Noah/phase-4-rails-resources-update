@@ -34,6 +34,17 @@ class BirdsController < ApplicationController
     end
   end
 
+  #isn't this the same as above; Do I have to comment out above?
+  def increment_likes
+    bird = Bird.find_by(id: params[:id])
+    if bird
+      bird.update(likes: bird.likes + 1)
+      render json: bird
+    else
+      render json: { error: "Bird not found" }, status: :not_found
+    end
+  end
+
 
   private
 
